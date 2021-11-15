@@ -3,7 +3,7 @@ filledArr = new Array(50).fill(1,0,50);
 console.log(filledArr.length,filledArr);
 
 //2
-numArr = Array.from({length:50}, (v, i) =>  i);
+numArr = Array.from({length:50}, (v, i) => i + 1);
 console.log(numArr)
 
 //3
