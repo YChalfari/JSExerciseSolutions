@@ -1,20 +1,19 @@
-const isIsogram = (str) => {
+const distinctMultipleChars = (str) => {
   const multiplesCount = str
     .toLowerCase()
     .split("")
     .reduce((countObj, currentChar) => {
-      // let key = countObj[currentChar]
       countObj[currentChar]
         ? countObj[currentChar]++
         : (countObj[currentChar] = 1);
       return countObj;
     }, {});
-  let trueOrFalse;
-  Object.values(multiplesCount).forEach((value) => {
+  let distinctMultiples = 0;
+  for ([key, value] of Object.entries(multiplesCount)) {
     if (value > 1) {
-      trueOrFalse = false;
+      distinctMultiples++;
     }
-  });
-  return trueOrFalse;
+  }
+  return distinctMultiples;
 };
-console.log(isIsogram("zzckdxxy"));
+console.log(distinctMultipleChars("Aabccdee11")); //4 - a,c,e,1

@@ -33,4 +33,8 @@ for (i = 0; i < 3; i++) {
   };
   setTimeout(log, 100);
 }
-//The loop happens faster than the timeout so i already reached 3
+
+/* If it was written for(let i = 0)  log//0,1,2  WHY!?
+setTimeout remembers what it needs to pass to log to run in 100ms
+but it only remembers it if it's in the scope (closure)
+*/
