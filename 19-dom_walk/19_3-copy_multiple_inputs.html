@@ -80,9 +80,25 @@
       const digits = document.querySelectorAll("div input");
       const wrapper = document.querySelector(".inputs-wrap");
       const submit = document.querySelector(".submit");
+
       wrapper.onclick = (e) => {
         [...digits].find((digit) => digit.value < 1).focus();
         digits.forEach((digit, i) => {
+          if (digit.value.length > 1) {
+            digit.classList.add(".not-filled");
+          }
+
+          digit.addEventListener("paste", (e) => {
+            digits.forEach((digit, j) => {
+              let paste = (e.clipboardData || window.clipboardData).getData(
+                "text"
+              );
+              paste.split("").forEach((char, j) => {
+                digits[i + j].value = char;
+              });
+            });
+          });
+
           digit.addEventListener("keyup", (e) => {
             const key = e.keyCode || e.charCode;
             if (key == 8) {
@@ -92,7 +108,7 @@
               if (i < digits.length - 1) {
                 digits[i + 1].focus();
               } else {
-                submit.focus();
+                submit.click();
               }
             }
           });
