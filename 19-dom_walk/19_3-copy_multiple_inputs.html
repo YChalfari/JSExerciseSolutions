@@ -80,14 +80,14 @@
       const digits = document.querySelectorAll("div input");
       const wrapper = document.querySelector(".inputs-wrap");
       const submit = document.querySelector(".submit");
+      // Add red border on empty fields
+      //         if (digit.value.length > 1) {
+      //           digit.classList.add(".not-filled");
+      //         }
 
       wrapper.onclick = (e) => {
         [...digits].find((digit) => digit.value < 1).focus();
         digits.forEach((digit, i) => {
-          if (digit.value.length > 1) {
-            digit.classList.add(".not-filled");
-          }
-
           digit.addEventListener("paste", (e) => {
             digits.forEach((digit, j) => {
               let paste = (e.clipboardData || window.clipboardData).getData(
@@ -95,6 +95,9 @@
               );
               paste.split("").forEach((char, j) => {
                 digits[i + j].value = char;
+                if (![...digits].find((digit) => digit.value < 1)) {
+                  submit.click();
+                }
               });
             });
           });
