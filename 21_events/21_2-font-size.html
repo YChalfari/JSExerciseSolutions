@@ -17,17 +17,14 @@
       }
       .dec,
       .inc {
-        height: 20px;
-        width: 20px;
+        height: 30px;
+        width: 30px;
         margin: 5px;
-        font-size: 1rem;
+        font-size: 1.5rem;
         display: flex;
+        justify-content: center;
         align-items: center;
-        padding: 5px;
-      }
-      .ing {
-        align-self: flex-end;
-        justify-self: flex-end;
+        padding: 0 5px;
       }
       .text {
         font-size: 1;
@@ -37,27 +34,32 @@
 
   <body>
     <div class="wrap">
-      <button class="dec">v</button>
+      <button class="dec">-</button>
       <h1 class="text">Size Changing Text</h1>
-      <button class="inc">^</button>
+      <button class="inc">+</button>
     </div>
     <script>
       const decBtn = document.querySelector(".dec");
       const incBtn = document.querySelector(".inc");
       const h1 = document.querySelector(".text");
+      const h1ComputedSize = getComputedStyle(h1);
 
-      decBtn.addEventListener("click", () => {
-        const h1ComputedSize =
-          getComputedStyle(h1).getPropertyValue("font-size");
-        curSize = parseFloat(h1ComputedSize);
-        h1.style.fontSize = curSize - 1 + "px";
-      });
+      const decrease = (e) => {
+        let size = parseInt(h1ComputedSize.getPropertyValue("font-size"));
+        if (size > 6) {
+          h1.style.fontSize = size - 1 + "px";
+        }
+      };
+
       incBtn.addEventListener("click", () => {
-        const h1ComputedSize =
-          getComputedStyle(h1).getPropertyValue("font-size");
-        curSize = parseFloat(h1ComputedSize);
-        h1.style.fontSize = curSize + 1 + "px";
+        let size = parseInt(h1ComputedSize.getPropertyValue("font-size"));
+        if (size < 100) {
+          h1.style.fontSize = size + 1 + "px";
+        }
       });
+
+      decBtn.addEventListener("click", decrease);
+      // incBtn.addEventListener("click", increase);
     </script>
   </body>
 </html>
