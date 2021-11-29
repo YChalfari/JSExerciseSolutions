@@ -16,6 +16,10 @@
       .flex-col {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        margin-bottom: 25px;
       }
       .bg-dark {
         background-color: #333;
@@ -57,6 +61,15 @@
       p {
         margin-bottom: 20px;
       }
+      .submit {
+        border-radius: 10px;
+        width: 30%;
+        padding: 10px;
+        background-color: salmon;
+        outline-color: none;
+        color: black;
+        font-size: 1.2rem;
+      }
     </style>
   </head>
   <body class="bg-light flex-col">
@@ -73,8 +86,8 @@
           <input type="text" class="digit" value="" maxlength="1" />
           <input type="text" class="digit" value="" maxlength="1" />
         </div>
-        <input type="submit" class="submit" />
       </fieldset>
+      <input type="submit" class="submit" />
     </form>
     <script>
       const digits = document.querySelectorAll("div input");
